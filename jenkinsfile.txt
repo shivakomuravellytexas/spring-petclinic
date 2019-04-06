@@ -1,0 +1,25 @@
+node
+{
+  stage('scm'){
+     //git clone
+ //added something       
+          git 'https://github.com/spring-projects/spring-petclinic.git' 
+     
+   }
+  stage('package'){
+              sh label: '', script: 'mvn package'
+          
+      
+  }
+  stage('archive artifacts')
+   {
+     archive 'target/*.jar'
+   }
+  
+  stage('testing'){
+   junit 'target/surefire-reports/*.xml'
+ }    
+ 
+   
+}
+
